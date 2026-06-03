@@ -14,6 +14,12 @@ module "web_app" {
   tags                  = var.tags
 }
 
-# The following modules will be added as configuration is developed:
-# - module "frontdoor"
-# - module "monitoring"
+module "frontdoor" {
+  source                  = "../../modules/frontdoor"
+  frontdoor_profile_name  = var.frontdoor_profile_name
+  frontdoor_endpoint_name = var.frontdoor_endpoint_name
+  resource_group_name     = module.resource_group.name
+  backend_address         = module.web_app.default_hostname
+  tags                    = var.tags
+}
+

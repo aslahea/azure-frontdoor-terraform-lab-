@@ -22,3 +22,13 @@ variable "web_app_name" {
   type        = string
   description = "Name of the Web App"
 }
+
+variable "frontdoor_profile_name" {
+  type        = string
+  description = "Azure Front Door Profile Name"
+}
+
+variable "frontdoor_endpoint_name" {
+  type        = string
+  description = "Azure Front Door Endpoint Name"
+}

@@ -17,3 +17,9 @@ output "web_app_url" {
   value       = "https://${module.web_app.default_hostname}"
   description = "The URL of the web app"
 }
+
+output "frontdoor_endpoint" {
+  value       = module.frontdoor.frontdoor_endpoint
+  description = "The hostname of the Front Door endpoint"
+}
+
