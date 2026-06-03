@@ -55,4 +55,16 @@ resource "azurerm_cdn_frontdoor_route" "main" {
   forwarding_protocol    = "HttpsOnly"
   https_redirect_enabled = true
   link_to_default_domain = true
+
+  cache {
+    query_string_caching_behavior = "IgnoreQueryString"
+    compression_enabled           = true
+    content_types_to_compress = [
+      "text/html",
+      "text/css",
+      "application/javascript",
+      "application/json"
+    ]
+  }
 }
+
