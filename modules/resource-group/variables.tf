@@ -1,14 +1,15 @@
-variable "project" {
+variable "name" {
   type        = string
-  description = "The project name prefix for resources"
-}
-
-variable "environment" {
-  type        = string
-  description = "The deployment environment (e.g., dev, staging, prod)"
+  description = "Name of the resource group"
 }
 
 variable "location" {
   type        = string
-  description = "The Azure region where resources will be created"
+  description = "Location of the resource group"
 }
+
+variable "tags" {
+  type        = map(string)
+  description = "Tags to be applied to the resource group"
+}
+

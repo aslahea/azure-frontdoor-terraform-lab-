@@ -1,17 +1,34 @@
-variable "project" {
+variable "resource_group_name" {
   type        = string
-  description = "The project name prefix for resources"
-  default     = "fdlab"
-}
-
-variable "environment" {
-  type        = string
-  description = "The deployment environment name"
-  default     = "dev"
+  description = "Azure Resource Group Name"
 }
 
 variable "location" {
   type        = string
   description = "The Azure region where resources will be created"
-  default     = "eastus"
+}
+
+variable "tags" {
+  type        = map(string)
+  description = "Tags to be applied to the resources"
+}
+
+variable "app_service_plan_name" {
+  type        = string
+  description = "Name of the App Service Plan"
+}
+
+variable "web_app_name" {
+  type        = string
+  description = "Name of the Web App"
+}
+
+variable "frontdoor_profile_name" {
+  type        = string
+  description = "Azure Front Door Profile Name"
+}
+
+variable "frontdoor_endpoint_name" {
+  type        = string
+  description = "Azure Front Door Endpoint Name"
 }
