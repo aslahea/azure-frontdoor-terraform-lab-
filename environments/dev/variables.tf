@@ -1,17 +1,14 @@
-variable "project" {
+variable "resource_group_name" {
   type        = string
-  description = "The project name prefix for resources"
-  default     = "fdlab"
-}
-
-variable "environment" {
-  type        = string
-  description = "The deployment environment name"
-  default     = "dev"
+  description = "Azure Resource Group Name"
 }
 
 variable "location" {
   type        = string
   description = "The Azure region where resources will be created"
-  default     = "eastus"
+}
+
+variable "tags" {
+  type        = map(string)
+  description = "Tags to be applied to the resources"
 }

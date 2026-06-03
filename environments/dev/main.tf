@@ -1,8 +1,8 @@
 module "resource_group" {
-  source      = "../../modules/resource-group"
-  project     = var.project
-  environment = var.environment
-  location    = var.location
+  source   = "../../modules/resource-group"
+  name     = var.resource_group_name
+  location = var.location
+  tags     = var.tags
 }
 
 # The following modules will be added as configuration is developed:

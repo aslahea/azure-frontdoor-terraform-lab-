@@ -1,10 +1,5 @@
-resource "azurerm_resource_group" "rg" {
-  name     = "rg-${var.project}-${var.environment}"
+resource "azurerm_resource_group" "this" {
+  name     = var.name
   location = var.location
-
-  tags = {
-    Environment = var.environment
-    Project     = var.project
-    ManagedBy   = "Terraform"
-  }
+  tags     = var.tags
 }
