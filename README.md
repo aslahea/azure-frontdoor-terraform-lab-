@@ -8,10 +8,12 @@ An enterprise-grade, modular Terraform project designed to provision and manage 
 
 ```mermaid
 graph TD
-    User([User Client]) -->|HTTPS Redirect| AFD[Azure Front Door Standard]
-    AFD -->|Global Routing / Edge Caching| OG[Origin Group: app-origin-group]
-    OG -->|Backend Forwarding| WebApp[Azure Web App: Windows B1]
-    WebApp -->|Compute Layer| ASP[App Service Plan: asp-frontdoor-lab]
+    User([User Client]) -->|1. HTTP / HTTPS Request| AFD[Azure Front Door Standard]
+    AFD -->|2. Redirects HTTP to HTTPS| AFD
+    AFD -->|3. Edge Caching & Compression| AFD
+    AFD -->|4. Route: /*| OG[Origin Group: app-origin-group]
+    OG -->|5. Backend Forwarding| WebApp[Azure Web App: Windows B1]
+    WebApp -->|6. Compute Layer| ASP[App Service Plan: asp-frontdoor-lab]
 ```
 
 ---
