@@ -55,6 +55,9 @@ resource "azurerm_cdn_frontdoor_route" "main" {
   forwarding_protocol    = "HttpsOnly"
   https_redirect_enabled = true
   link_to_default_domain = true
+  cdn_frontdoor_rule_set_ids = [
+    azurerm_cdn_frontdoor_rule_set.main.id
+  ]
 
   cache {
     query_string_caching_behavior = "IgnoreQueryString"
@@ -65,6 +68,35 @@ resource "azurerm_cdn_frontdoor_route" "main" {
       "application/javascript",
       "application/json"
     ]
+  }
+}
+
+resource "azurerm_cdn_frontdoor_rule_set" "main" {
+  name                     = "cacheruleset"
+  cdn_frontdoor_profile_id = azurerm_cdn_frontdoor_profile.main.id
+}
+
+resource "azurerm_cdn_frontdoor_rule" "cache_rule" {
+  name                      = "cachestaticcontent" # Must contain only alphanumeric characters.
+  cdn_frontdoor_rule_set_id = azurerm_cdn_frontdoor_rule_set.main.id
+  order                     = 1
+
+  conditions {
+    request_uri_condition {
+      operator         = "BeginsWith"
+      match_values     = ["/"]
+      negate_condition = false
+    }
+  }
+
+  actions {
+    route_configuration_override_action {
+      cache_behavior      = "OverrideAlways"
+      cache_duration      = "1.00:00:00"
+      compression_enabled = true
+
+      query_string_caching_behavior = "IgnoreQueryString"
+    }
   }
 }
 
